@@ -23,13 +23,6 @@ class PostList(SelectRelatedMixin, generic.ListView):
 class SingleGroup(generic.DetailView):
     model = Group
 
-class GroupPost(SelectRelatedMixin):
-    # model = models.Post
-    # select_related = ("user", "group")
-    # success_url = reverse_lazy("Groups:all")
-    model = models.Post
-    template_name = "posts/group_post_list.html"
-
 class UserPosts(generic.ListView):
     model = models.Post
     template_name = "posts/user_post_list.html"
@@ -53,6 +46,7 @@ class UserPosts(generic.ListView):
 class PostDetail(SelectRelatedMixin, generic.DetailView):
     model = models.Post
     select_related = ("user", "group")
+    template_name = "posts/post_detail.html"
 
     def get_queryset(self):
         queryset = super().get_queryset()
